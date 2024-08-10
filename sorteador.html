@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sorteo de Nombres</title>
     <style>
+
         :root{
             --poppins-font: "Poppins", sans-serif;
             --border-color: rgb(136, 255, 255);
@@ -16,6 +17,7 @@
             margin: 0;
             font-family: var(--poppins-font);
             background-color: rgb(240, 255, 255);
+            height: 100%;
         }
         *{
             padding: 0;
@@ -111,7 +113,7 @@
             font-size: 1.25rem;
             text-align: center;
         }
-        
+
 
     </style>
 </head>
@@ -125,21 +127,90 @@
         </div>
         <div class="buttons">
             <button id="a" onclick="addName()">Agregar Nombre</button>
-            <button id="b" onclick="loadTemplate()">Plantilla Aspirantes</button>
+            <button id="b" onclick="loadPlantilla(templateAspirantes)">Plantilla Aspirantes</button>
         </div> 
         <ul id="nameList"></ul>
         <div class="sortear">
             <button id="c" onclick="draw()">Sortear</button>
-            <button id="d" onclick="borrar(names, 'nameList')">Borrar</button>
+            <button id="d" onclick="deleteName()">Borrar</button>
         </div>        
         <div class="resultados">
             <h2>Resultados:</h2>
         </div>
         <ul id="resultList"></ul>
+        <footer></footer>
     </main>
     <script>
         let names = [];
+        let auxiliarArray = [];
+        let inputBox = document.getElementById('nameInput');
+        let nmInput = document.getElementById('nameInput').value;
         const templateAspirantes = ['AS0087','AS0088','AS0089','AS0090','AS0091','AS0092','AS0093','AS0094','AS0095','AS0096','AS0097','AS0098','AS0099','AS0100','AS0101','AS0102','AS0103','AS0104','AS0105','AS0106']
+
+        function addName(){
+            let nameInput = document.getElementById('nameInput').value;
+            
+            if (nameInput){
+                names.push(nameInput)
+                document.getElementById('nameList').innerHTML += `<li>${nameInput}</li>`;
+                console.log(names)
+                document.getElementById('nameInput').value = ""
+            }
+        }
+
+        //Presionar enter en el input
+        inputBox.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            addName()
+        }
+        });
+
+        function deleteName(){
+            names = [];
+            nameInput = "";
+            document.getElementById('nameList').innerHTML = `<ul></ul>`
+            document.getElementById('nameInput').value = ""
+            document.getElementById('resultList').innerHTML = `<ul></ul>`
+        }
+
+        function loadPlantilla(Plantilla){
+            names = Plantilla;
+            if (names){
+                for (let i=0; i< templateAspirantes.length; i++){
+                    document.getElementById('nameList').innerHTML += `<li>${names[i]}</li>`;
+                    document.getElementById('nameInput').value = ""
+                }
+            }
+        }
+
+        function draw(){
+            for (let i = names.length - 1; i > 0; i--) {
+                let j = randomNumber(i,0);
+                [names[i], names[j]] = [names[j], names[i]];
+            }
+            document.getElementById('resultList').innerHTML = `<ul></ul>`;
+            if (names){
+                let j = 1;
+                for (let i=0; i< names.length; i++){
+                    document.getElementById('resultList').innerHTML += `<li>${j} - ${names[i]}</li>`; 
+                    j++
+                } 
+            }
+            // names = []
+
+            
+            
+            // for (let i=0; i<names.length; i++){
+            //     `${console.log(i+1)}`
+            // }
+        }
+
+        function randomNumber(max, min){
+            let randomNumb = Math.floor((Math.random()*(max-min+1)+min));
+            return randomNumb
+        }
+        /*
 
         function addName() {
             const nameInput = document.getElementById('nameInput');
@@ -180,6 +251,7 @@
             
         }
 
+        */
 
     </script>
 </body>
