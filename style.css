@@ -1,0 +1,126 @@
+:root{
+    --poppins-font: "Poppins", sans-serif;
+    --border-color: rgb(136, 255, 255);
+    --color-button: #5bc0de;
+}
+
+body,html {
+    padding: 0;
+    margin: 0;
+    font-family: var(--poppins-font);
+    background-color: rgb(240, 255, 255);
+    height: 100%;
+}
+*{
+    padding: 0;
+    margin: 0; 
+}
+
+header{
+    text-align: center;
+    padding: 2rem 0 0;
+}
+main {
+    padding: 0 0 3rem;
+}
+.input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1.2rem 0;
+}
+input{
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    width: 50%;
+    font-size: 1rem;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+button{
+    padding: 1rem 0;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    width: 35%;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+.buttons button{
+    background-color: var(--color-button);
+    color: white;
+    font-weight: 600;
+    
+}
+#nameList{
+    padding: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    
+}
+#nameList li{
+    padding: 1rem;
+    margin: 0.75rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+.sortear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 1rem;
+}
+#c {
+    background-color: var(--color-button);
+    color: white;
+    font-weight: 600;
+}
+#d {
+    background-color: rgb(255, 106, 106);
+    color: white;
+}
+.resultados {
+    text-align: center;
+    padding: 1rem 0 0;
+}
+#resultList{
+    width: 100;
+    height: auto;
+}
+#resultList li{
+    margin: 1rem;
+    font-size: 1.25rem;
+    text-align: center;
+}
+.information{
+    position: relative;
+    bottom: 0;
+    padding: 2rem 0 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+.information a{
+    width: 1.5rem;
+    
+}
+#github{
+    width: 100%;
+}

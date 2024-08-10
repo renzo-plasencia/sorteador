@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo de Nombres</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1>Sorteo de Nombres</h1>
+    </header>
+    <main>
+        <div class="input">
+            <input type="text" id="nameInput" placeholder="Ingresa un nombre">
+        </div>
+        <div class="buttons">
+            <button id="a" onclick="addName()">Agregar Nombre</button>
+            <button id="b" onclick="loadPlantilla(templateAspirantes)">Plantilla Aspirantes</button>
+        </div> 
+        <ul id="nameList"></ul>
+        <div class="sortear">
+            <button id="c" onclick="draw()">Sortear</button>
+            <button id="d" onclick="deleteName()">Borrar</button>
+        </div>        
+        <div class="resultados">
+            <h2>Resultados:</h2>
+        </div>
+        <ul id="resultList"></ul>
+        <footer>
+            <div class="information">
+                <span>Desarrollado por Renzo Plasencia</span>
+                <a href="https://github.com/renzo-plasencia" target="_blank"><img id="github" src="./assets/github.png" alt=""></a>
+            </div>
+        </footer>
+    </main>
+    <script src="/script.js"></script>
+</body>
+</html>
