@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo de Nombres</title>
+    <style>
+        :root{
+            --poppins-font: "Poppins", sans-serif;
+            --border-color: rgb(136, 255, 255);
+            --color-button: #5bc0de;
+        }
+
+        body,html {
+            padding: 0;
+            margin: 0;
+            font-family: var(--poppins-font);
+            background-color: rgb(240, 255, 255);
+        }
+        *{
+            padding: 0;
+            margin: 0; 
+        }
+
+        header{
+            text-align: center;
+            padding: 2rem 0 0;
+        }
+        main {
+            padding: 0 0 3rem;
+        }
+        .input{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1.2rem 0;
+        }
+        input{
+            padding: 0.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            width: 50%;
+            font-size: 1rem;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        button{
+            padding: 1rem 0;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            width: 35%;
+        }
+        .buttons{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+        .buttons button{
+            background-color: var(--color-button);
+            color: white;
+            font-weight: 600;
+            
+        }
+        #nameList{
+            padding: 1rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            
+        }
+        #nameList li{
+            padding: 1rem;
+            margin: 0.75rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .sortear {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            margin: 0;
+            padding: 0 0 1rem;
+        }
+        #c {
+            background-color: var(--color-button);
+            color: white;
+            font-weight: 600;
+        }
+        #d {
+            background-color: rgb(255, 106, 106);
+            color: white;
+        }
+        .resultados {
+            text-align: center;
+            padding: 1rem 0 0;
+        }
+        #resultList{
+            width: 100;
+        }
+        #resultList li{
+            margin: 1rem;
+            font-size: 1.25rem;
+            text-align: center;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sorteo de Nombres</h1>
+    </header>
+    <main>
+        <div class="input">
+            <input type="text" id="nameInput" placeholder="Ingresa un nombre">
+        </div>
+        <div class="buttons">
+            <button id="a" onclick="addName()">Agregar Nombre</button>
+            <button id="b" onclick="loadTemplate()">Plantilla Aspirantes</button>
+        </div> 
+        <ul id="nameList"></ul>
+        <div class="sortear">
+            <button id="c" onclick="draw()">Sortear</button>
+            <button id="d" onclick="borrar(names, 'nameList')">Borrar</button>
+        </div>        
+        <div class="resultados">
+            <h2>Resultados:</h2>
+        </div>
+        <ul id="resultList"></ul>
+    </main>
+    <script>
+        let names = [];
+        const templateAspirantes = ['AS0087','AS0088','AS0089','AS0090','AS0091','AS0092','AS0093','AS0094','AS0095','AS0096','AS0097','AS0098','AS0099','AS0100','AS0101','AS0102','AS0103','AS0104','AS0105','AS0106']
+
+        function addName() {
+            const nameInput = document.getElementById('nameInput');
+            const name = nameInput.value.trim();
+            if (name && !names.includes(name)) {
+                names.push(name);
+                document.getElementById('nameList').innerHTML += `<li>${name}</li>`;
+                nameInput.value = '';
+            }
+        }
+
+        function loadTemplate() {
+            templateAspirantes.forEach(name => {
+                if (!names.includes(name)) {
+                    names.push(name);
+                    document.getElementById('nameList').innerHTML += `<li>${name}</li>`;
+                }
+            });
+        }
+
+        function draw() {
+            const numbers = Array.from({length: Math.min(names.length, 20)}, (_, i) => i + 1);
+            shuffleArray(numbers);
+            const results = names.map((name, index) => `${name} - ${numbers[index]}`);
+            document.getElementById('resultList').innerHTML = results.map(result => `<li>${result}</li>`).join('');
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function borrar(array, documento){
+            array = [];
+            document.getElementById(documento).innerHTML = "";
+            
+        }
+
+
+    </script>
+</body>
+</html>
